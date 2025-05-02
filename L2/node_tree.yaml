@@ -1,0 +1,110 @@
+Root:
+  type: Node3D
+  children:
+    - MainCamera:
+      type: Camera3D
+      properties:
+        Position: <any>
+    - WorldEnvironment:
+      type: WorldEnvironment
+      properties:
+        Environment: "WorldEnvironment"
+        Camera Attributes: "Camera Attributes Practical"
+    - SunLight:
+      type: DirectionalLight3D
+      properties:
+        Position: <any>
+    - Floor:
+      type: CSGBox3D
+      properties:
+        Size: 200, 1, 200
+        UseCollision: true
+        Material:
+          type: StandardMaterial3D
+          properties:
+            Albedo:
+              Color: <any>
+    - Player:
+      type: Player
+    - Enemy1:
+      type: Enemy
+      properties:
+        Position: <any>
+        Rotation: <any>
+    - Enemy2:
+      type: Enemy
+      properties:
+        Position: <any>
+        Rotation: <any>
+    - Enemy3:
+      type: Enemy
+      properties:
+        Position: <any>
+        Rotation: <any>
+
+Player:
+  type: CharacterBody3D
+  group: player
+  script: player.gd
+  children:
+    - Mage:
+      type: Node3D
+      remarks:
+        - "1. Drag the mage.glb file under this scene"
+        - "2. Right-click this and select [Make Local]"
+      children:
+        - AnimationPlayer:
+            type: AnimationPlayer
+            remarks: "Comes with the mage.glb file"
+        - Rig:
+            type: Node3D
+            remarks: "Comes with the mage.glb file"
+
+    - CollisionShape3D:
+      type: CollisionShape3D
+      properties:
+        Shape:
+          type: CapsuleShape3D
+          properties:
+            Radius: 1
+        Position: 0, 1, 0
+    - AttackRange:
+      type: Area3D
+      children:
+        - CollisionShape3D:
+          type: CollisionShape3D
+          properties:
+            Shape: CylinderShape3D
+            Radius: 20
+
+Enemy:
+  type: CharacterBody3D
+  group: enemy
+  script: enemy.gd
+  children:
+    - Barbarian:
+      type: Node3D
+      remarks:
+        - "1. Drag the barbarian.glb file under this scene"
+        - "2. Right-click this and select [Make Local]"
+      children:
+        - AnimationPlayer:
+            type: AnimationPlayer
+            remarks: "Comes with the barbarian.glb file"
+        - Rig:
+            type: Node3D
+            remarks: "Comes with the barbarian.glb file"
+    - CollisionShape3D:
+      type: CollisionShape3D
+      properties:
+        Shape:
+          type: CapsuleShape3D
+        Position: 0, 1, 0
+    - AttackRange:
+      type: Area3D
+      children:
+        - CollisionShape3D:
+          type: CollisionShape3D
+          properties:
+            Shape: CylinderShape3D
+            Radius: 2
