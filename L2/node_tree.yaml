@@ -41,6 +41,8 @@ Root:
       properties:
         Position: <any>
         Rotation: <any>
+    - EnemySpawner:
+      type: EnemySpawner
 
 Player:
   type: CharacterBody3D
@@ -108,3 +110,25 @@ Enemy:
           properties:
             Shape: CylinderShape3D
             Radius: 2
+
+ManaBall:
+  type: Area3D
+  script: mana_ball.gd
+  children:
+    - CollisionShape3D:
+      type: CollisionShape3D
+      properties:
+        Shape:
+          type: SphereShape3D
+    - CSGSphere3D:
+      type: CSGSphere3D
+
+EnemySpawner:
+  type: Node3D
+  script: enemy_spawner.gd
+  children:
+    - Timer:
+      type: Timer
+      properties:
+        Wait Time: 2
+        Autostart: true
